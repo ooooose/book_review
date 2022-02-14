@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: sessions_params[:email])
     if user && user.authenticate(sessions_params[:password])
       log_in(user)
+      remember user
       flash[:success] = 'ログインに成功しました'
       redirect_to users_url
     else
