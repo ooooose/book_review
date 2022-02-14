@@ -1,2 +1,11 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+  <div class="jumbotron p-3 p-md-5 rounded bg-brown">
+    <div class="main">
+      <div class="col-md-2">
+        <%= gravatar_for @user %>
+      </div>
+      <div class="col-md-4">
+        <h3><%= @user.name %></h3>
+        <p class="lead"><%= @user.email %></p>
+      </div>
+    </div>
+  </div>

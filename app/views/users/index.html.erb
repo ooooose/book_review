@@ -1,2 +1,24 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<% provide :title, 'Users' %>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <%= gravatar_for user %>
+        <div class="card-body">
+          <h3 class="card-text"><%= link_to user.name, user %></h3>
+          <p class="card-text"><%= user.email %></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <% if current_user == user %>
+                <%= link_to "編集", edit_user_path(user), class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "削除", user_path(user),method: :delete, class: "btn btn-sm btn-outline-secondary" %>
+              <% end %>
+            </div>
+            <small class="text-muted">9 mins</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
