@@ -1,0 +1,22 @@
+<% if @books %>
+  <div class="row">
+    <% @books.each do |book| %>
+      <div class="col-md-3">
+        <div class="card mb-3 shadow-sm">
+          <%= image_tag book.medium_image_url %>
+          <div class="card-body">
+            <p class="card-text"><%= book.title %></p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= form_tag books_path do %>
+                   <%= hidden_field_tag :isbn, book.isbn %>
+                   <%= submit_tag 'save', class:"btn btn-sm btn-outline-secondary" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

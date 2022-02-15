@@ -37,7 +37,8 @@
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <% if log_in? %>
-              <a href="#" class="btn btn-primary my-2">図書一覧</a>
+              <%= link_to '図書一覧', '/books/index', class:"btn btn-primary my-2" %>
+              <%= link_to '検索画面', '/search', class:"btn btn-primary my-2" %>
               <%= link_to 'ユーザー一覧', users_path, class:"btn btn-secondary my-2" %>
               <%= link_to 'ログアウト', logout_path,method: :delete, class:"btn btn-secondary my-2" %>
             <% else %>
