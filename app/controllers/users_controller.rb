@@ -38,6 +38,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @books = @user.books.all
   end
   
   def destroy

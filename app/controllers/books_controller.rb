@@ -23,7 +23,7 @@ class BooksController < ApplicationController
       
       
   def index
-    @books = Book.all
+    @books = current_user.books.all
   end
   
   
@@ -31,11 +31,11 @@ class BooksController < ApplicationController
   end
   
   def create
-    @book = Book.find_or_initialize_by(isbn: params[:isbn])
+    @book = current_user.books.find_or_initialize_by(isbn: params[:isbn])
     
     unless @book.persisted?
       results = RakutenWebService::Books::Book.search(isbn: @book.isbn)
-      @book = Book.new(read(results.first))
+      @book = current_user.books.build(read(results.first))
       @book.save
       flash[:success] = '保存しました'
       redirect_to books_url

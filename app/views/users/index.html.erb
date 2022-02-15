@@ -6,7 +6,7 @@
       <div class="card mb-4 shadow-sm">
         <%= gravatar_for user %>
         <div class="card-body">
-          <h3 class="card-text"><%= link_to user.name, user %></h3>
+          <h3 class="card-title"><%= link_to user.name, user %></h3>
           <p class="card-text"><%= user.email %></p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
@@ -15,7 +15,7 @@
                 <%= link_to "削除", user_path(user),method: :delete, class: "btn btn-sm btn-outline-secondary" %>
               <% end %>
             </div>
-            <small class="text-muted">9 mins</small>
+            <small class="text-muted"><%= user.books.count %> books</small>
           </div>
         </div>
       </div>
