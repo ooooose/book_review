@@ -25,6 +25,8 @@ gem 'bcrypt', '~> 3.1.7'
 # 楽天APIの実装
 gem 'rakuten_web_service'
 
+#Jqueryを実装
+gem "jquery-rails"
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

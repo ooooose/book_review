@@ -10,6 +10,20 @@
 </div>
 
 <%= form_for(@review) do |f| %>
+  <div class="field" id="star">
+    <%= f.label :evaluation, "星評価：" %>
+    <%= f.hidden_field :evaluation, id: :review_star %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'review[evaluation]',   
+        half: true,   
+      });
+    </script>
+  </div>
   <%= f.label :content %>
   <%= f.text_area :content, class: 'form-control' %>
   

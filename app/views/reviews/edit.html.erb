@@ -9,10 +9,23 @@
   </div>
 </div>
 
-<%= form_for(@review) do |f| %>
+<%= form_with model: @review, local: true do |f| %>
+  <div class="field" id="star" >
+    <%= f.label :evaluation, "星評価：" %>
+    <%= f.hidden_field :evaluation, id: :review_star %>
+    <script>
+      $('#star').raty({
+        size     : 36,
+        starOff:  "<%= asset_path('star-off.png') %>",
+        starOn : "<%= asset_path('star-on.png') %>",
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'review[evaluation]',   
+        half: true,   
+      });
+    </script>
+  </div>
   <%= f.label :content %>
   <%= f.text_area :content, method: :patch, class: 'form-control' %>
-  
   <%= hidden_field_tag :book_id, @book.id %>
   <%= f.submit '編集', class: 'btn btn-primary' %>
 <% end %>
