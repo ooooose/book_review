@@ -1,0 +1,28 @@
+<%= provide :title, 'Book Detail' %>
+
+<div class="review-book ">
+  <div class="col-md-4">
+    <div>
+      <div class="card mb-3 shadow-sm">
+        <%= image_tag @book.image_url %>
+      </div>
+    </div>
+  </div>
+  <div class="review-content" >
+    <h3>Title:<%= @book.title %></h3>
+    <h4>Author:<%= @book.author %></h4>
+    <hr/>
+    <% if @review.nil? %>
+      <h4>No Reveiw</h4>
+      <%= form_tag(new_review_path, method: "get") do %>
+        <%= hidden_field_tag :id, @book.id %>
+        <%= submit_tag 'レビュー作成', class:"btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <h4>Review</h4>
+      <p class="form-control"><%= @review.content %></p>
+      <%= link_to '図書一覧', books_path, class: "btn btn-secondary" %>
+      <%= link_to '編集', edit_review_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

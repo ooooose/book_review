@@ -26,6 +26,11 @@ class BooksController < ApplicationController
     @books = current_user.books.all
   end
   
+  def show
+    @book = Book.find_by(id: params[:id])
+    @review = @book.review
+  end
+  
   
   def new
   end

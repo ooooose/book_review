@@ -2,6 +2,8 @@
   margin-bottom:10px;
 }
 
+
+
 .main{
   display:flex;
 }
@@ -13,4 +15,19 @@
 .card-text{
   font-size:8px;
   line-height:1.2;
+}
+
+.review-book{
+  margin:0 auto;
+  display:flex;
+  text-align:center;
+}
+
+.review-content{
+  min-width:600px;
+  text-align:left;
+  .btn{
+    float:right;
+    margin-right:5px;
+  }
 }

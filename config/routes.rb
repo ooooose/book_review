@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get '/search', to: 'books#serch'
   delete '/search', to: 'books#reset'
   get 'books/index', to: 'books#index'
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   root 'sessions#new'
   
+  resources :reviews
   resources :books
   resources :users
   resources :sessions

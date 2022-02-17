@@ -4,12 +4,12 @@
       <div class="card mb-3 shadow-sm">
         <%= image_tag book.image_url %>
         <div class="card-body">
-          <p class="card-text"><%= book.title %></p>
+          <p class="card-text"><%= link_to book.title, book_path(book) %></p>
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <%= form_tag(book_path(book), method: "delete") do %>
-                 <%= hidden_field_tag :isbn, book.isbn %>
-                 <%= submit_tag '削除', class:"btn btn-sm btn-outline-secondary" %>
+                <%= hidden_field_tag :isbn, book.isbn %>
+                <%= submit_tag '削除', class:"btn btn-sm btn-outline-secondary" %>
               <% end %>
             </div>
             <small class="text-muted"><%= book.user.name %></small>
