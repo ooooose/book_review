@@ -7,6 +7,7 @@
         <h3><%= @user.name %></h3>
         <p class="lead"><%= @user.email %></p>
       </div>
+      <%= render 'relationships/follow_button', user: @user %>
     </div>
   </div>
     <div class="row">

@@ -4,6 +4,9 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
+    @users.each do |user|
+      @relationships = user.relationships
+    end
   end
 
   def new
@@ -48,6 +51,21 @@ class UsersController < ApplicationController
       flash[:success] = "ユーザーの削除に成功しました"
     end
   end
+  
+  def following
+    @title = "Followings"
+    @user  = User.find(params[:id])
+    @users = @user.followings
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
+
   
   private
     def user_params
