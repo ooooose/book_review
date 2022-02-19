@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
     user = User.find(session[:user_id])
     log_out(user)
     flash[:success] = 'ログアウトしました'
-    redirect_to login_url
+    redirect_to root_url
   end
   
   
