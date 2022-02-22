@@ -1,23 +1,27 @@
-  <div class="jumbotron p-3 p-md-5 rounded bg-brown">
-    <div class="main">
-      <div class="col-md-2">
-        <%= gravatar_for @user %>
-      </div>
-      <div class="col-md-4">
-        <h3><%= @user.name %></h3>
-        <p class="lead"><%= @user.email %></p>
-      </div>
-      <%= render 'relationships/follow_button', user: @user %>
-    </div>
-  </div>
-    <div class="row">
-  <% @books.each do |book| %>
-      <div class="col-md-4">
-        <div>
-          <div class="card mb-3 shadow-sm">
-            <%= image_tag book.image_url %>
-          </div>
-        </div>
-      </div>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= gravatar_for @user %>
+      <h1><%= @user.name %></h1>
+      <span><b>Books:</b> <%= link_to @user.books.count, user_books_path(@user) %></span>
+    </section>
+    <section class="stats">
+      <%= render 'stats' %>
+    </section>
+    <br/>
+    <% if @user != current_user %>
+      <%= render 'relationships/follow_button' %>
     <% end %>
-  </div>
+  </aside>
+  <% @posts = @user.posts.all.order(created_at: :desc) %>
+    <div class="col-md-8">
+      <% @posts.each do |post| %>
+          <div>
+              <%= gravatar_for post.user %>
+              <%= post.user.name %>
+              <%= link_to post.content, post_path(post), class: 'post-content' %>
+              <hr/>
+          </div>
+      <% end %>
+    </div>
+</div>

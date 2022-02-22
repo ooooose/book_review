@@ -19,5 +19,6 @@ module BookApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts << ".amazonaws.com"
+    config.time_zone = 'Tokyo'
   end
 end

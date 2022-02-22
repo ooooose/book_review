@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  
   def serch
     @books = []
     @keyword = params[:keyword]
@@ -23,7 +24,8 @@ class BooksController < ApplicationController
       
       
   def index
-    @books = current_user.books.all
+    user = User.find_by(id: params[:user_id])
+    @books = user.books.all
   end
   
   def show
@@ -43,16 +45,16 @@ class BooksController < ApplicationController
       @book = current_user.books.build(read(results.first))
       @book.save
       flash[:success] = '保存しました'
-      redirect_to books_url
+      redirect_to posts_url
     end
   end
     
     
   def destroy
-    @book = Book.find_by(isbn: params[:isbn])
+    @book = Book.find_by(id: params[:id])
     @book.destroy
     flash[:success] = '削除しました'
-    redirect_to books_url
+    redirect_to posts_url
   end
   
   

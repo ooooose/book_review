@@ -1,0 +1,8 @@
+<% @comment = current_user.comments.new %>
+<br/>
+<%= form_for [@post,@comment] do |f|  %>
+  <%= f.text_area :comment_content, class: 'form-control', placeholder: "コメントする" %>
+  
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.submit 'コメントする', class: 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,22 @@
+<section class="user_info">
+  <h1>
+    <%= gravatar_for current_user %>
+    <%= current_user.name %>
+  </h1>
+  <span><%= link_to "view my profile", current_user %> |</span>
+  <span><b>Books:</b> <%= link_to current_user.books.count,  user_books_path(current_user) %></span>
+</section>
+<div class="stats">
+  <a href="<%= following_user_path(current_user) %>">
+    <strong id="followings" class="stat">
+      <%= current_user.followings.count %>
+    </strong>
+    following
+  </a>
+  <a href="<%= followers_user_path(current_user) %>">
+    <strong id="followers" class="stat">
+      <%= current_user.followers.count %>
+    </strong>
+    followers
+  </a>
+</div>

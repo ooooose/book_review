@@ -2,11 +2,12 @@
   margin-bottom:10px;
 }
 
+// header{
+//   width:100%;
+//   position:fixed;
+//   z-index:10;
+// }
 
-
-.main{
-  display:flex;
-}
 
 .main-info{
   display:flex;
@@ -34,4 +35,43 @@
 
 .top-center{
   text-align:center;
+}
+
+.post-content{
+  margin:0 50px;
+}
+
+// likes.scss
+
+.like-link {
+  text-decoration: none;
+}
+
+.like-link:hover {
+  text-decoration: none;
+}
+
+.like-btn {
+  font-size: 15px;
+  color: #808080;
+}
+ 
+.unlike-btn {
+  font-size: 15px;
+  color: #e54747;
+}
+
+.created_at{
+  float: right;
+}
+
+.post-trash{
+  float: right;
+  margin-right: 5px;
+}
+
+.post-text{
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
 }

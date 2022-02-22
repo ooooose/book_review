@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
+  
+  has_many :comments, dependent: :destroy
+  
+  
+  has_many :posts, dependent: :destroy
   has_many :books, dependent: :destroy
   has_many :reviews, dependent: :destroy
   
@@ -55,7 +62,12 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
   
+  def own?(object)
+    self.id == object.user_id
+  end
   
-  
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
   
 end

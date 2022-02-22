@@ -7,7 +7,7 @@
       <%= gravatar_for @user %>
       <h1><%= @user.name %></h1>
       <span><%= link_to "view my profile", @user %></span>
-      <span><b>Books:</b> <%= @user.books.count %></span>
+      <span><b>Books:</b> <%= link_to @user.books.count, user_books_path(@user) %></span>
     </section>
     <section class="stats">
       <%= render 'stats' %>

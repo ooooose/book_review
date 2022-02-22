@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       log_in(user)
       remember user
       flash[:success] = 'ログインに成功しました'
-      redirect_to users_url
+      redirect_to posts_url
     else
       flash[:danger] = 'ログインに失敗しました'
       render 'new'

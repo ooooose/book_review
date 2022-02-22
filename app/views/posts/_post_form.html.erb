@@ -1,0 +1,8 @@
+
+<% @post = current_user.posts.new %>
+<%= render 'errors' %>
+<%= form_for(@post) do |f|  %>
+  <%= f.text_area :content, class: 'form-control' %>
+  
+  <%= f.submit '投稿', class: 'btn btn-primary post-btn' %>
+<% end %>

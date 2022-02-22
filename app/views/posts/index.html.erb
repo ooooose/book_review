@@ -1,0 +1,19 @@
+<% @posts = Post.all.order(created_at: :desc) %>
+<div class="row">
+    <aside class="col-md-4">
+      <%= render 'user_profile' %>
+      <hr/>
+      <%= render 'post_form' %>
+    </aside>
+    <div class="col-md-8">
+      <h2>Posts</h2>
+      <% @posts.each do |post| %>
+        <div>
+          <%= gravatar_for post.user %>
+          <%= post.user.name %>
+          <%= link_to post.content, post_path(post), class: 'post-content' %>
+          <hr/>
+        </div>
+      <% end %>
+    </div>
+</div>

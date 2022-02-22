@@ -1,0 +1,18 @@
+<%= provide :title, 'Post Detail' %>
+<div class="post-text" >
+  <%= gravatar_for @post.user %>
+  <%= link_to @post.user.name,user_path(@post.user) %>
+  <hr/>
+  <p><%= @post.content %></p>
+  <%= render 'post', post: @post %>
+  <small class="created_at"><%= @post.created_at %></small>
+  <% if current_user == @post.user %>
+    <%= link_to post_path(@post) ,method: :delete do %>
+      <i class="far fa-trash-alt post-trash"></i>
+    <% end %>
+  <% end %>
+  <br/>
+</div>
+  <%= render 'comments/form_comment', post: @post %>
+  <br/>
+  <%= render 'comments' %>

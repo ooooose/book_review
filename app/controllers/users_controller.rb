@@ -4,9 +4,6 @@ class UsersController < ApplicationController
   
   def index
     @users = User.all
-    @users.each do |user|
-      @relationships = user.relationships
-    end
   end
 
   def new
@@ -41,7 +38,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
-    @books = @user.books.all
   end
   
   def destroy
@@ -75,5 +71,7 @@ class UsersController < ApplicationController
     def signin_user
       redirect_to root_url unless log_in?
     end
+    
+
   
 end
