@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<%= form_for(@review) do |f| %>
+<%= form_for(@review, url: {controller: 'reviews', action: 'create', id: @review.book_id}) do |f| %>
   <div class="field" id="star">
     <%= f.label :evaluation, "星評価：" %>
     <%= f.hidden_field :evaluation, id: :review_star %>

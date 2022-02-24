@@ -25,14 +25,27 @@ class BooksController < ApplicationController
       
   def index
     user = User.find_by(id: params[:user_id])
-    @books = user.books.all
+    @books = user.books.all.page(params[:page]).per(5)
   end
   
   def show
-    @book = Book.find_by(id: params[:id])
-    @review = @book.review
+    @book =Book.find_by(id: params[:id])
+    books = Book.where(isbn: @book.isbn)
+    total = 0
+    count = 0
+    books.each do |book|
+      unless book.review.nil?
+        total += book.review.evaluation
+        count += 1
+      end
+    end
+    if count != 0
+      @eval_avg = total / count
+    else
+      @eval_avg = 0
+    end
   end
-  
+
   
   def new
   end
@@ -57,6 +70,23 @@ class BooksController < ApplicationController
     redirect_to posts_url
   end
   
+  def ranking
+    books = Book.all.group_by(&:isbn)
+    # 月間いいねの数をカウント
+    book_like_count= {}
+    monthly_likes = Like.all.where(created_at: Time.current.all_month)
+    books.values.each do |book|
+      likes = 0
+      book.each do |b|
+        likes += monthly_likes.where(post_id: b.posts.ids).pluck(:id).count
+      end
+      book_like_count.store(book[0], likes)
+    end
+    @book_liked_ranks = book_like_count.sort_by { |_, v| v }.reverse.to_h
+  end
+  
+
+  
   
   private
   #「楽天APIのデータから必要なデータを絞り込む」、且つ「対応するカラムにデータを格納する」メソッドを設定していきます。
@@ -74,6 +104,7 @@ class BooksController < ApplicationController
       image_url: image_url
     }
   end
+  
   
 end
  

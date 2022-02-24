@@ -3,16 +3,34 @@
   <%= gravatar_for @post.user %>
   <%= link_to @post.user.name,user_path(@post.user) %>
   <hr/>
-  <p><%= @post.content %></p>
-  <%= render 'post', post: @post %>
-  <small class="created_at"><%= @post.created_at %></small>
-  <% if current_user == @post.user %>
-    <%= link_to post_path(@post) ,method: :delete do %>
-      <i class="far fa-trash-alt post-trash"></i>
-    <% end %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-2">
+      <div>
+        <div class="card mb-3 shadow-sm">
+          <%= link_to book_path(@post.book) do %>
+            <%= image_tag @post.book.image_url, width: '100%' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="post-content">
+        <p><%= @post.content %></p>
+      </div>
+      <hr/>
+      <%= render 'post', post: @post %>
+      <small class="created_at"><%= @post.created_at %></small>
+      <% if current_user == @post.user %>
+        <%= link_to post_path(@post) ,method: :delete do %>
+          <i class="far fa-trash-alt post-trash"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
   <br/>
 </div>
   <%= render 'comments/form_comment', post: @post %>
   <br/>
-  <%= render 'comments' %>
+  <% if @post.comments.any? %>
+    <%= render 'comments' %>
+  <% end %>

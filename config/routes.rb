@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '/home', to: 'top#index'
   root 'top#index'
   
-  get 'posts/index', to: 'posts#index'
+  get '/posts', to: 'posts#index'
   
   get '/search', to: 'books#serch'
   delete '/search', to: 'books#reset'
@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/ranking', to: 'books#ranking'
+  get '/evaluations', to: 'books#evaluations'
   
   resources :users do
     resources :books, only: [:index, :show]
@@ -25,10 +27,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create]
   end
-  
-  
-  
-  resources :reviews
+  resources :books do
+    resource :reviews  
+  end
   resources :books
   resources :posts
   resources :sessions

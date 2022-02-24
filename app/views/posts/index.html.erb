@@ -1,4 +1,3 @@
-<% @posts = Post.all.order(created_at: :desc) %>
 <div class="row">
     <aside class="col-md-4">
       <%= render 'user_profile' %>
@@ -15,5 +14,6 @@
           <hr/>
         </div>
       <% end %>
+      <%= paginate @posts %>
     </div>
 </div>

@@ -75,3 +75,21 @@
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.post-content{
+  height:160px;
+  margin-left:0;
+}
+
+.rank{
+  display: flex;
+  h3{
+    line-height: 150px;
+  }
+  .rank-image{
+    margin: 0 20px;
+  }
+  .rank-info h4{
+    padding:20px 0;
+  }
+}

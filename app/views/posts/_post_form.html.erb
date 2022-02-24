@@ -1,7 +1,9 @@
 
 <% @post = current_user.posts.new %>
 <%= render 'errors' %>
+<% @books = current_user.books %>
 <%= form_for(@post) do |f|  %>
+  <%= f.collection_select :book_id, @books.all, :id, :title, {prompt: "本を選択してください"}, {class: "form-control"} %>
   <%= f.text_area :content, class: 'form-control' %>
   
   <%= f.submit '投稿', class: 'btn btn-primary post-btn' %>

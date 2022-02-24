@@ -1,4 +1,3 @@
-<%= provide :title, 'Book Detail' %>
 
 <div class="review-book ">
   <div class="col-md-4">
@@ -11,37 +10,31 @@
   <div class="review-content" >
     <h3>Title:<%= @book.title %></h3>
     <h4>Author:<%= @book.author %></h4>
+    <h4>
+      <span>全体評価：</span>
+      <span id="star-rate-<%= @book.id %>"></span>
+      <script>
+        $('#star-rate-<%= @book.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,   
+          readOnly: true,
+          score: <%= @eval_avg %>, 
+        });
+      </script> 
+      <%= @eval_avg %>
+    </h4>
     <hr/>
-    <% if @review.nil? %>
-      <h4>No Reveiw</h4>
-      <%= form_tag(new_review_path, method: "get") do %>
-        <%= hidden_field_tag :id, @book.id %>
-        <%= submit_tag 'レビュー作成', class:"btn btn-primary" %>
+    <p></p>
+      <% unless current_user.books.include?(@book)  %>
+        <%= form_tag books_path do %>
+           <%= hidden_field_tag :isbn, @book.isbn %>
+           <%= submit_tag '図書に追加する', class:"btn btn-sm btn-outline-secondary" %>
+        <% end %>
+      <% else %>
+        <%= link_to 'あなたのレビュー', book_reviews_path(@book) ,class:'btn btn-primary' %>
       <% end %>
-    <% else %>
-      <h4>
-        <span>評価：</span>
-        <span id="star-rate-<%= @review.id %>"></span>
-        <script>
-          $('#star-rate-<%= @review.id %>').raty({
-            size: 36,
-            starOff: "<%= asset_path('star-off.png') %>",
-            starOn: "<%= asset_path('star-on.png') %>",
-            starHalf: "<%= asset_path('star-half.png') %>",
-            half: true,   
-            readOnly: true,
-            score: <%= @review.evaluation %>, 
-          });
-        </script>
-        <%= @review.evaluation %>
-        
-      </h4>
-      <h4>Review：</h4>
-      <p class="form-control"><%= @review.content %></p>
-      <% if @review.user == current_user  %>
-        <%= link_to '削除', book_path(@book),method: :delete, class: "btn btn-primary" %>
-        <%= link_to '編集', edit_review_path, class: "btn btn-primary" %>
-      <% end %>
-    <% end %>
   </div>
 </div>

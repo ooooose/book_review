@@ -26,6 +26,9 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # 楽天APIの実装
 gem 'rakuten_web_service'
+# ページネーションの実装
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
 
 #Jqueryを実装
 gem "jquery-rails"

@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<%= form_with model: @review, local: true do |f| %>
+<%= form_for(@review, url: {controller: 'reviews', action: 'update', id: @review.book_id}) do |f| %>
   <div class="field" id="star" >
     <%= f.label :evaluation, "星評価：" %>
     <%= f.hidden_field :evaluation, id: :review_star %>
@@ -20,7 +20,8 @@
         starOn : "<%= asset_path('star-on.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
         scoreName: 'review[evaluation]',   
-        half: true,   
+        half: true,  
+        score: <%= @review.evaluation %>,
       });
     </script>
   </div>

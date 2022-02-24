@@ -1,0 +1,40 @@
+<div class="review-book ">
+  <div class="col-md-4">
+    <div>
+      <div class="card mb-3 shadow-sm">
+        <%= image_tag @book.image_url %>
+      </div>
+    </div>
+  </div>
+  <div class="review-content" >
+    
+    <% if @review.nil? %>
+      <h4>No Reveiw</h4>
+      <hr/>
+        <%= link_to 'レビュー作成',new_book_reviews_path, class:"btn btn-primary" %>
+    <% else %>
+      <h4>
+        <span>あなたの評価：</span>
+        <span id="star-rate-<%= @review.id %>"></span>
+        <script>
+          $('#star-rate-<%= @review.id %>').raty({
+            size: 36,
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,   
+            readOnly: true,
+            score: <%= @review.evaluation %>, 
+          });
+        </script>
+        <%= @review.evaluation %>
+        
+      </h4>
+      <h4>Review：</h4>
+      <p class="form-control"><%= @review.content %></p>
+      <% if @review.user == current_user  %>
+        <%= link_to '編集', edit_book_reviews_path, class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
