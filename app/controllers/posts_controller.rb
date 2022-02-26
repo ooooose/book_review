@@ -48,7 +48,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc).page(params[:page]).per(5)
+    followings_member = current_user.followings
+    @posts = Post.where(user_id: [current_user.id, *followings_member.ids]).order(created_at: :desc).page(params[:page]).per(10)
   end
   
   private

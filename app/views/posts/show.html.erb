@@ -1,8 +1,5 @@
 <%= provide :title, 'Post Detail' %>
 <div class="post-text" >
-  <%= gravatar_for @post.user %>
-  <%= link_to @post.user.name,user_path(@post.user) %>
-  <hr/>
   <div class="row">
     <div class="col-md-2">
       <div>
@@ -14,6 +11,9 @@
       </div>
     </div>
     <div class="col-md-8">
+      <%= gravatar_for @post.user %>
+      <%= link_to @post.user.name,user_path(@post.user) %>
+      <hr/>
       <div class="post-content">
         <p><%= @post.content %></p>
       </div>

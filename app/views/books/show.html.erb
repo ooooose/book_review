@@ -1,33 +1,7 @@
-
-<div class="review-book ">
-  <div class="col-md-4">
-    <div>
-      <div class="card mb-3 shadow-sm">
-        <%= image_tag @book.image_url %>
-      </div>
-    </div>
-  </div>
-  <div class="review-content" >
-    <h3>Title:<%= @book.title %></h3>
-    <h4>Author:<%= @book.author %></h4>
-    <h4>
-      <span>全体評価：</span>
-      <span id="star-rate-<%= @book.id %>"></span>
-      <script>
-        $('#star-rate-<%= @book.id %>').raty({
-          size: 36,
-          starOff: "<%= asset_path('star-off.png') %>",
-          starOn: "<%= asset_path('star-on.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          half: true,   
-          readOnly: true,
-          score: <%= @eval_avg %>, 
-        });
-      </script> 
-      <%= @eval_avg %>
-    </h4>
-    <hr/>
-    <p></p>
+<div class="row">
+    <aside class="col-md-4">
+      <%= image_tag @book.image_url,width: '320px'%>
+      <hr/>
       <% unless current_user.books.include?(@book)  %>
         <%= form_tag books_path do %>
            <%= hidden_field_tag :isbn, @book.isbn %>
@@ -36,5 +10,38 @@
       <% else %>
         <%= link_to 'あなたのレビュー', book_reviews_path(@book) ,class:'btn btn-primary' %>
       <% end %>
-  </div>
+    </aside>
+    <div class="col-md-8">
+      <h3><%= @book.title %></h3>
+      <h4><%= @book.author %></h4>
+      <h4>
+        <span>全体評価：</span>
+        <span id="star-rate-<%= @book.id %>"></span>
+        <script>
+          $('#star-rate-<%= @book.id %>').raty({
+            size: 36,
+            starOff: "<%= asset_path('star-off.png') %>",
+            starOn: "<%= asset_path('star-on.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            half: true,   
+            readOnly: true,
+            score: <%= @eval_avg %>, 
+          });
+        </script> 
+        <%= @eval_avg %>
+      </h4>
+      <hr/>
+      <div class="minimum-scroll" >
+        <% @posts.each do |post| %>
+          <div>
+            <%= gravatar_for post.user %>
+            <%= post.user.name %>
+            <%= link_to post.content, post_path(post), class: 'post-content' %>
+            <hr/>
+          </div>
+        <% end %>
+      </div>
+      <br/>
+      <%= paginate @posts %>
+    </div>
 </div>

@@ -25,12 +25,13 @@ class BooksController < ApplicationController
       
   def index
     user = User.find_by(id: params[:user_id])
-    @books = user.books.all.page(params[:page]).per(5)
+    @books = user.books.all.page(params[:page]).per(6)
   end
   
   def show
     @book =Book.find_by(id: params[:id])
     books = Book.where(isbn: @book.isbn)
+    @posts = Post.where(book_id: books.ids).order(created_at: :desc).page(params[:page]).per(10)
     total = 0
     count = 0
     books.each do |book|
@@ -82,7 +83,7 @@ class BooksController < ApplicationController
       end
       book_like_count.store(book[0], likes)
     end
-    @book_liked_ranks = book_like_count.sort_by { |_, v| v }.reverse.to_h
+    @book_liked_ranks = book_like_count.sort_by { |_, v| v }.reverse.to_h.take(5)
   end
   
 

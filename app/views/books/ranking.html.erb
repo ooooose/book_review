@@ -1,15 +1,17 @@
-<h3>Monthly Ranking</h3>
+<h3>月間ランキング</h3>
 <br/>
-<% @book_liked_ranks.each.with_index(1) do |(book,like),index| %>
-  <div class="rank">
-    <h3>第<%= index %>位</h3>
-    <%= link_to book_path(book) do %>
-      <%= image_tag book.image_url,width:'100px',class:'rank-image' %>
-    <% end %>
-    <div class="rank-info">
-      <h4>タイトル：<%= book.title %></h4>
-      <p>著者：<%= book.author %>　累計：<strong><%= like %></strong>いいね</p>
+<div class="scroll">
+  <% @book_liked_ranks.each.with_index(1) do |(book,like),index| %>
+    <div class="rank">
+      <h3>第<%= index %>位</h3>
+      <%= link_to book_path(book) do %>
+        <%= image_tag book.image_url,width:'100px',class:'rank-image' %>
+      <% end %>
+      <div class="rank-info">
+        <h4>タイトル：<%= book.title %></h4>
+        <p>著者：<%= book.author %>　累計：<strong><%= like %></strong>いいね</p>
+      </div>
     </div>
-  </div>
-  <hr/>
-<% end %>
+    <hr/>
+  <% end %>
+</div>

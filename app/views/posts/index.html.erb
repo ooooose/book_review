@@ -6,14 +6,17 @@
     </aside>
     <div class="col-md-8">
       <h2>Posts</h2>
-      <% @posts.each do |post| %>
-        <div>
-          <%= gravatar_for post.user %>
-          <%= post.user.name %>
-          <%= link_to post.content, post_path(post), class: 'post-content' %>
-          <hr/>
-        </div>
-      <% end %>
+      <div class="scroll" >
+        <% @posts.each do |post| %>
+          <div>
+            <%= gravatar_for post.user %>
+            <%= post.user.name %>
+            <%= link_to post.content, post_path(post), class: 'post-content' %>
+            <hr/>
+          </div>
+        <% end %>
+      </div>
+      <br/>
       <%= paginate @posts %>
     </div>
 </div>
