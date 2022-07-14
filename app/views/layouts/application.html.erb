@@ -17,9 +17,9 @@
           <a href="/home" class="navbar-brand d-flex align-items-center">
             <strong>Book App</strong>
           </a>
-          <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <div>
             <% if log_in? %>
-              <%= link_to 'ホーム', '/posts', class:"btn btn-primary my-2" %>
+              <%= link_to '投稿一覧', '/posts', class:"btn btn-primary my-2" %>
               <%= link_to '書庫', user_books_path(current_user), class:"btn btn-primary my-2" %>
               <%= link_to '本を探す', '/search', class:"btn btn-primary my-2" %>
               <%= link_to 'ランキング', '/ranking', class:"btn btn-primary my-2" %>
@@ -29,10 +29,11 @@
               <%= link_to 'ユーザー登録', new_user_path, class:"btn btn-secondary my-2" %>
               <%= link_to 'ログイン', login_path , class:"btn btn-secondary my-2" %>
             <% end %>
-          </button>
+          </div>
         </div>
       </div>
     </header>
+    <div class="surplus"></div>
     <div class="container">
       <br/>
       <% if flash.any? %>
