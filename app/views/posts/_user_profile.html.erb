@@ -3,7 +3,7 @@
     <%= gravatar_for current_user %>
     <%= current_user.name %>
   </h1>
-  <span><%= link_to "view my profile", current_user %> |</span>
+  <span><%= link_to "HOME", current_user %> |</span>
   <span><b>Books:</b> <%= link_to current_user.books.count,  user_books_path(current_user) %></span>
 </section>
 <div class="stats">

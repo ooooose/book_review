@@ -7,13 +7,10 @@
            <%= hidden_field_tag :isbn, @book.isbn %>
            <%= submit_tag '図書に追加する', class:"btn btn-sm btn-outline-secondary" %>
         <% end %>
-      <% else %>
-        <%= link_to 'あなたのレビュー', book_reviews_path(@book) ,class:'btn btn-primary' %>
       <% end %>
     </aside>
     <div class="col-md-8">
-      <h3><%= @book.title %></h3>
-      <h4><%= @book.author %></h4>
+      <h3><%= @book.title %> | <%= @book.author %></h3>
       <h4>
         <span>全体評価：</span>
         <span id="star-rate-<%= @book.id %>"></span>
@@ -30,7 +27,13 @@
         </script> 
         <%= @eval_avg %>
       </h4>
+      <% if @book.review && current_user.id == @book.user_id %>
+        <%= link_to("評価を編集", edit_book_reviews_path(@book), class:"btn btn-secondary btn-sm") %>
+      <% else %>
+        <%= link_to("評価をする", new_book_reviews_path(@book), class: "btn btn-primary btn-sm") %>
+      <% end %>
       <hr/>
+      <h4>関連ツイート</h4>
       <div class="minimum-scroll" >
         <% @posts.each do |post| %>
           <div>

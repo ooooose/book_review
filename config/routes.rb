@@ -3,18 +3,13 @@ Rails.application.routes.draw do
   # ホーム画面をrootに設定
   root 'top#index'
 
-  # アクションを限定できるような気もする？
-  resources :posts
-  resources :books
-  resources :users
-
   # 本を探すためのルーティング 
-  get '/search', to: 'books#serch'
+  get    '/search', to: 'books#serch'
   delete '/search', to: 'books#reset'
  
   # セッション機能のルーティング 
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
+  get    '/login',  to: 'sessions#new'
+  post   '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
   # 「いいね」ランキング機能のページ遷移
@@ -45,6 +40,6 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   # いいね機能のルーティング
-  post 'like/:id' => 'likes#create', as: 'create_like'
+  post 'like/:id'   => 'likes#create',  as: 'create_like'
   delete 'like/:id' => 'likes#destroy', as: 'destroy_like'
 end

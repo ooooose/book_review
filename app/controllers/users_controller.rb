@@ -14,7 +14,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:success] = 'ユーザーの作成に成功しました'
-      redirect_to users_path
+      log_in(@user)
+      remember @user
+      redirect_to posts_path
     else
       flash[:danger] = 'ユーザーの登録に失敗しました'
       render 'new'

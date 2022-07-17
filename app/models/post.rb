@@ -8,5 +8,7 @@ class Post < ApplicationRecord
   has_many :liked_users, through: :likes, source: :user
   
   validates :book_id, presence: true
-  validates :content, presence: true
+  validates :content, presence: true, length: { maximum: 100 }
+  validates :user_id, presence: true
+  validates :book_id, presence: true
 end
