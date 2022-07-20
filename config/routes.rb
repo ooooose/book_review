@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'top#index'
 
   # 本を探すためのルーティング 
-  get    '/search', to: 'books#serch'
-  delete '/search', to: 'books#reset'
+  get    '/search', to: 'searchbooks#search'
+  delete '/search', to: 'searchbooks#reset'
  
   # セッション機能のルーティング 
   get    '/login',  to: 'sessions#new'

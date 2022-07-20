@@ -1,0 +1,16 @@
+<%= provide :title, 'Book_Research' %>
+
+<div class='content'>
+  <div id="search-box">
+    <%= form_tag('/search', method: :get) do %>
+      <input type='text' class='form-control' name='keyword' placeholder='キーワードを入力してください'>
+      <input type='submit' class='btn btn-primary' value='検索'>
+      <%= link_to('リセット', "/search",{ class: 'btn btn-secondary', method: :delete}) %>
+    <% end %>
+  </div>
+  <br/>
+  <h2 class="lead">検索結果</h2>
+  <div id='book_list'>
+     <%= render partial: 'book_list' %>
+  </div>
+</div>
