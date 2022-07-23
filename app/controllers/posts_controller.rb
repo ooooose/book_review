@@ -1,17 +1,17 @@
 class PostsController < ApplicationController
   
   def new
-    @post = Post.new
+    @post = current_user.posts.build
   end
   
   def create
-    @post = current_user.posts.create(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
       flash[:success] = '投稿しました'  
       redirect_to posts_url
     else
       flash[:danger] = '投稿に失敗しました'
-      render 'index'
+      redirect_to posts_url 
     end
   end
   
